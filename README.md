@@ -1,2 +1,2 @@
 # NLP_Project_AI23
-Natural Language Processing with Disaster Tweets
+Sentiment Analysis with IMDB movie reviews
