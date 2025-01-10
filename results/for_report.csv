@@ -1,0 +1,2 @@
+Model,Notes,Accuracy
+sarahai/movie-sentiment-analysis,50/50 train-test split,0.88528
