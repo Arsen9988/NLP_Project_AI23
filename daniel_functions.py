@@ -14,7 +14,7 @@ def create_checked_texts(array_text, tokenizer):
     nbr_API_calls = 0
     for i, string in enumerate(array_text):
         try:
-            tokenized_text = tokenizer(string, padding=True, truncation=False, return_tensors="tf")
+            tokenized_text = tokenizer(string, padding=True, truncation=False, return_tensors="tf") # padding=false
         except Exception as e:
             print(f"Error: {e}")
             return None
@@ -38,14 +38,27 @@ def create_sentiment_analysis(array_text, sentiment_pipeline):
     sentiment_results = sentiment_results.str.lower()
     return sentiment_results
 
+def create_openai_sentiment_analysis(array_text):
+    """Function creates sentiment analysis for an array of strings."""
+    nbr_API_calls = 0
+    openai_sentiment_results = pd.Series(dtype=str)
+    for i, string in enumerate(array_text):
+        openai_sentiment_results.loc[i] = openai_sentiment_analysis(string)
+        print(string[0:50])
+        print(openai_sentiment_results.loc[i])
+        nbr_API_calls += 1
+        print(f"API calls: {nbr_API_calls}")
+    openai_sentiment_results = openai_sentiment_results.str.lower()   
+    return openai_sentiment_results, nbr_API_calls
 
-def plot_confusion_matrix(cm):
+
+def plot_confusion_matrix(cm, title=None):
     """Function plots a confusion matrix."""
     plt.figure(figsize=(7, 4.5))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'])
     plt.xlabel('Predicted')
     plt.ylabel('True')
-    plt.title('Confusion Matrix')
+    plt.title(f'Confusion Matrix {title}')
     plt.show()
 
 
@@ -64,3 +77,18 @@ def summarize_text(text):
     # Extract the summary from the response
     summary = response['choices'][0]['message']['content']
     return summary
+
+def openai_sentiment_analysis(text):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # Use "gpt-4" if needed
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant that based on a text creates a sentiment analysis."},
+            {"role": "user", "content": f"Create a sentiment analysis on this text: {text}. The answer from you should be either 'positive' or 'negative'and always lowercase. Never answer with anything else than 'positive' or 'negative'"},
+            ],
+        max_tokens=10,  # Limit the output to 500 tokens
+        temperature=0.5  # Controls randomness, 0.5 is a balanced value
+    )
+    
+    # Extract the summary from the response
+    openai_sentiment_analysis = response['choices'][0]['message']['content']
+    return openai_sentiment_analysis
