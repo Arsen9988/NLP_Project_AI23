@@ -9,8 +9,11 @@ torch = "*"
 pandas = "*"
 transformers = {extras = ["torch"], version = "*"}
 scikit-learn = "*"
+tensorflow = "*"
+tf-keras = "*"
 
 [dev-packages]
+ipykernel = "*"
 
 [requires]
 python_version = "3.12"
