@@ -78,14 +78,14 @@ def summarize_text(text):
     summary = response['choices'][0]['message']['content']
     return summary
 
-def openai_sentiment_analysis(text):
+def openai_sentiment_analysis(text, model='gpt-3.5-turbo'):
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # Use "gpt-4" if needed
+        model=model,  # Use "gpt-4" if needed
         messages=[
             {"role": "system", "content": "You are a helpful assistant that based on a text creates a sentiment analysis."},
             {"role": "user", "content": f"Create a sentiment analysis on this text: {text}. The answer from you should be either 'positive' or 'negative'and always lowercase. Never answer with anything else than 'positive' or 'negative'"},
             ],
-        max_tokens=10,  # Limit the output to 500 tokens
+        max_tokens=10,  # Limit the output to 10 tokens
         temperature=0.5  # Controls randomness, 0.5 is a balanced value
     )
     
