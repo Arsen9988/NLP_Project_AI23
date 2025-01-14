@@ -1,2 +1,3 @@
 Model,Notes,Accuracy
 sarahai/movie-sentiment-analysis,50/50 train-test split,0.88528
+michelecafagna26/gpt2-medium-finetuned-sst2-sentiment, 70/30(only 4000 rows) train-test split,  0.89283
