@@ -38,12 +38,12 @@ def create_sentiment_analysis(array_text, sentiment_pipeline):
     sentiment_results = sentiment_results.str.lower()
     return sentiment_results
 
-def create_openai_sentiment_analysis(array_text):
+def create_openai_sentiment_analysis(array_text, model='gpt-3.5-turbo'):
     """Function creates sentiment analysis for an array of strings."""
     nbr_API_calls = 0
     openai_sentiment_results = pd.Series(dtype=str)
     for i, string in enumerate(array_text):
-        openai_sentiment_results.loc[i] = openai_sentiment_analysis(string)
+        openai_sentiment_results.loc[i] = openai_sentiment_analysis(string, model=model)
         print(string[0:50])
         print(openai_sentiment_results.loc[i])
         nbr_API_calls += 1
