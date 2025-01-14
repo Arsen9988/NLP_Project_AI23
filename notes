@@ -1,0 +1,23 @@
+Att använda följande träningsparametrar gav out of memory på min GPU
+
+training_args = TrainingArguments(
+    output_dir="./results",
+    num_train_epochs=1,
+    per_device_train_batch_size=2,
+    per_device_eval_batch_size=2,
+    fp16=True,
+    gradient_accumulation_steps=8,
+    logging_dir="./logs",
+    logging_steps=10,
+)
+
+
+
+OutOfMemoryError: CUDA out of memory. Tried to allocate 90.00 MiB. GPU 0 has a total capacity of 1.91 GiB of which 55.69 MiB is free.
+Including non-PyTorch memory, this process has 1.16 GiB memory in use. Of the allocated memory 1.03 GiB is allocated by PyTorch, and 70.24 MiB is reserved by PyTorch but unallocated.
+If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+
+Pre-trained model results: {'eval_loss': 0.4122530519962311, 'eval_model_preparation_time': 0.0016, 'eval_runtime': 2416.0615, 'eval_samples_per_second': 10.347, 'eval_steps_per_second': 5.174}
+
+[ 2/1562 : < :, Epoch 0.00/1]
