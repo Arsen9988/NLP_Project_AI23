@@ -1,10 +1,10 @@
 Model,Notes,Accuracy
-sarahai/movie-sentiment-analysis,50/50 train-test split,0.885
-distilbert untuned,50/50 train-test split,0.890
+sarahai/movie-sentiment-analysis,50/50 train-test split (25000 test),0.885
+distilbert untuned,50/50 train-test split (25000 test),0.890
 distilbert untuned, 2000 samples,0.891
 distilbert finentuned, 2000 samples,0.904
 michelecafagna26/gpt2-medium-finetuned-sst2-sentiment, 70/30 train-test split,0.893
 GPT-3.5, 250 sentiment analysis,0.910
 GPT-4o mini, 250 sentiment analysis,0.93
-unigram, bag of words (25000 test),0.893
-bigram, bag of words (25000 test),0.892
+unigram, bag of words 50/50 train-test split (25000 test),0.893
+bigram, bag of words 50/50 train-test split (25000 test),0.892
