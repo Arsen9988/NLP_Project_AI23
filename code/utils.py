@@ -8,8 +8,9 @@ from transformers import AutoTokenizer
 import openai
 import time
 
+
 openai.api_key_path = (
-    r"C:\Users\danie\Documents\GitHub\NLP_Project_AI23\API_KEY_OPENAI_250110.txt"
+    r"C:\Users\danie\Documents\GitHUb\NLP_Project_AI23\key.txt"
 )
 
 
